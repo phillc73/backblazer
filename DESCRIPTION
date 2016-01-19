@@ -1,0 +1,20 @@
+Package: backblazer
+Type: Package
+Title: R package for Backblaze B2 API
+Version: 0.1
+Date: 2016-01-19
+Author: Authors@R: person("Phill", "Clarke", email = "phill@starkingdom.co.uk",
+    role = c("aut", "cre"))
+Maintainer: Phill Clarke <phill@starkingdom.co.uk>
+Description: R package for Backblaze B2 API
+Depends:
+    R (>= 3.2.3)
+License: MIT + file LICENSE
+URL: https://github.com/phillc73/backblazer
+BugReports: http://www.github.com/phillc73/backblazer/issues
+LazyData: TRUE
+Imports:
+    caTools (>= 1.17.1),
+    httr (>= 1.0.0)
+VignetteBuilder: knitr
+RoxygenNote: 5.0.1
