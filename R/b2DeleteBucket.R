@@ -1,12 +1,16 @@
-# List B2 File Versions
+# Delete Bucket
 
-b2ListFileVersions <- function(bucketId){
+b2DeleteBucket <- function(bucketId){
 
   # Function options from input, make a dataframe
+  accountId <- as.character(accountAuthorization$accountId)
   bucketId <- as.data.frame(bucketId, stringsAsFactors = FALSE)
 
+  # Bind function option data frames together
+  vars <- cbind(accountId, bucketId)
+
   # API call
-  b2Return <- httr::POST(paste(accountAuthorization$apiUrl,"/b2api/v1/b2_list_file_versions", sep=""), body = jsonlite::toJSON(unbox(bucketId), pretty = TRUE), add_headers('Authorization' = as.character(accountAuthorization$authorizationToken)))
+  b2Return <- httr::POST(paste(accountAuthorization$apiUrl,"/b2api/v1/b2_delete_bucket", sep=""), body = jsonlite::toJSON(unbox(vars), pretty = TRUE), add_headers('Authorization' = as.character(accountAuthorization$authorizationToken)))
 
   # Check for bad authorisation and sent message
   if (httr::status_code(b2Return) != "200") {
@@ -17,7 +21,7 @@ b2ListFileVersions <- function(bucketId){
     )
 
   } else {
-  # Output as dataframe
+    # Output as dataframe
     jsonlite::fromJSON(content(b2Return, type = "text"))
   }
 }

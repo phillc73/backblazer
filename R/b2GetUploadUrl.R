@@ -1,12 +1,12 @@
-# List B2 File Versions
+# B2 Get Upload URL
 
-b2ListFileVersions <- function(bucketId){
+b2GetUploadUrl <- function(bucketId){
 
   # Function options from input, make a dataframe
   bucketId <- as.data.frame(bucketId, stringsAsFactors = FALSE)
 
   # API call
-  b2Return <- httr::POST(paste(accountAuthorization$apiUrl,"/b2api/v1/b2_list_file_versions", sep=""), body = jsonlite::toJSON(unbox(bucketId), pretty = TRUE), add_headers('Authorization' = as.character(accountAuthorization$authorizationToken)))
+  b2Return <- httr::POST(paste(accountAuthorization$apiUrl,"/b2api/v1/b2_get_upload_url", sep=""), body = jsonlite::toJSON(unbox(bucketId), pretty = TRUE), add_headers('Authorization' = as.character(accountAuthorization$authorizationToken)))
 
   # Check for bad authorisation and sent message
   if (httr::status_code(b2Return) != "200") {
@@ -17,7 +17,7 @@ b2ListFileVersions <- function(bucketId){
     )
 
   } else {
-  # Output as dataframe
+    # Output as dataframe
     jsonlite::fromJSON(content(b2Return, type = "text"))
   }
 }
