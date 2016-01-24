@@ -8,13 +8,16 @@ b2UploadFile <- function(authToken, uploadUrl, fileName){
   # File Size
   fileSize <- file.size(fileName)
   # sha1 hash of file
-  sha1Hash <- openssl::sha1(fileName)
+  sha1Hash <- openssl::sha1(file(fileName))
+
+  # Get file extension
+  fileNameExtension <- tools::file_ext(fileName)
   # File Types List
   b2FileTypes <- readRDS("data/b2FileTypes.rds")
   b2ContentType <- b2FileTypes$contentType[grepl(fileNameExtension, b2FileTypes$fileExtension) == TRUE]
 
   # API call
-  b2Return <- httr::POST(uploadUrl, body = fileName, add_headers('Authorization' = as.character(authToken), 'X-Bz-File-Name' = as.character(fileNameEncoded), 'Content-Type' = as.character(b2ContentType), 'Content-Length' = as.character(fileSize), 'X-Bz-Content-Sha1' = as.character(sha1Hash)))
+  b2Return <- httr::POST(uploadUrl, body = upload_file(fileName), add_headers('Authorization' = as.character(authToken), 'X-Bz-File-Name' = as.character(fileNameEncoded), 'Content-Type' = as.character(b2ContentType), 'Content-Length' = as.character(fileSize), 'X-Bz-Content-Sha1' = as.character(sha1Hash)))
 
   # Check for bad authorisation and sent message
   if (httr::status_code(b2Return) != "200") {
