@@ -19,9 +19,11 @@ The following functions exist and appear to work as intended:
 ?b2ListFileNames
 ?b2ListFileVersions
 ?b2UpdateBucket
+?b2UploadFile
 ```
+This list covers all Backblaze B2 API functions. All mandatory parameters are included for the functions to operate. No optional parameters are included. It is currently possible to upload, download and delete files in a Backblaze B2 account using this package.
 
-Currently no documentation. Please refer directly to the [Backblaze B2 API documentation](https://www.backblaze.com/b2/docs/) for now.
+Documentation started but not yet finished. Please refer directly to the [Backblaze B2 API documentation](https://www.backblaze.com/b2/docs/) for now.
 
 ## Disclaimer
 

@@ -1,7 +1,35 @@
-# Delete File Version
+#' Delete B2 File Version.
+#'
+#' \code{b2DeleteFileVersion} deletes a version of a file in the user's account
+#' on the Backblaze B2 cloud storage product.
+#'
+#' This function deletes a version of a file within the user's account on the
+#' Backblaze B2 cloud storage product. Files of the same name may have multiple
+#' versions stored on B2. If the deleted file version is the latest, and there
+#' are older versions of the same file, the most recent of these will become the
+#' latest version. The most recent file version is always the version downloaded
+#' if requested by name. Further details regarding this API call are available
+#' here:
+#'
+#' \url{https://www.backblaze.com/b2/docs/b2_delete_file_version.html}
+#'
+#' B2 Delete File Version \code{fileName} and \code{fileId} are mandatory and
+#' must be user defined.
+#'
+#' @param fileName The name of the file to be deleted.
+#' @param fileId The unique identifier of the file to be deleted. File IDs may
+#'   be obtained through the \code{b2_upload_file}, \code{b2_list_file_names},
+#'   or \code{b2_list_file_versions} functions in this package.
+#' @return If successful a list containing the \code{fileId} and \code{fileName}
+#'   will be echoed back to the user.
+#'
+#' @examples
+#' \dontrun{
+#' b2DeleteFileVersion(fileName = "nameOfTheFileToDelete", fileId = "Unique_identifier_of_the_file_to_delete")
+#' }
+#'
 
-b2DeleteFileVersion <- function(fileName, fileId){
-
+b2DeleteFileVersion <- function(fileName, fileId) {
   # Function options from input, make a dataframe
   fileName <- as.data.frame(fileName, stringsAsFactors = FALSE)
   fileId <- as.data.frame(fileId, stringsAsFactors = FALSE)
@@ -10,7 +38,14 @@ b2DeleteFileVersion <- function(fileName, fileId){
   vars <- cbind(fileName, fileId)
 
   # API call
-  b2Return <- httr::POST(paste(accountAuthorization$apiUrl,"/b2api/v1/b2_delete_file_version", sep=""), body = jsonlite::toJSON(unbox(vars), pretty = TRUE), add_headers('Authorization' = as.character(accountAuthorization$authorizationToken)))
+  b2Return <-
+    httr::POST(
+      paste(
+        accountAuthorization$apiUrl,"/b2api/v1/b2_delete_file_version", sep = ""
+      ), body = jsonlite::toJSON(unbox(vars), pretty = TRUE), add_headers(
+        'Authorization' = as.character(accountAuthorization$authorizationToken)
+      )
+    )
 
   # Check for bad authorisation and sent message
   if (httr::status_code(b2Return) != "200") {

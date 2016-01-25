@@ -9,6 +9,7 @@ b2UploadFile <- function(authToken, uploadUrl, fileName){
   fileSize <- file.size(fileName)
   # sha1 hash of file
   sha1Hash <- openssl::sha1(file(fileName))
+  sha1Hash <- paste(sha1Hash, collapse = "")
 
   # Get file extension
   fileNameExtension <- tools::file_ext(fileName)
@@ -32,4 +33,4 @@ b2UploadFile <- function(authToken, uploadUrl, fileName){
     jsonlite::fromJSON(content(b2Return, type = "text"))
   }
 }
-}
+
