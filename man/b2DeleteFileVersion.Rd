@@ -10,8 +10,8 @@ b2DeleteFileVersion(fileName, fileId)
 \item{fileName}{The name of the file to be deleted.}
 
 \item{fileId}{The unique identifier of the file to be deleted. File IDs may
-be obtained through the \code{b2_upload_file}, \code{b2_list_file_names},
-or \code{b2_list_file_versions} functions in this package.}
+be obtained through the \code{b2UploadFile}, \code{b2ListFileNames},
+or \code{b2ListFileVersions} functions in this package.}
 }
 \value{
 If successful a list containing the \code{fileId} and \code{fileName}
@@ -37,7 +37,8 @@ must be user defined.
 }
 \examples{
 \dontrun{
-b2DeleteFileVersion(fileName = "nameOfTheFileToDelete", fileId = "Unique_identifier_of_the_file_to_delete")
+b2DeleteFileVersion(fileName = "nameOfTheFileToDelete",
+ fileId = "Unique_identifier_of_the_file_to_delete")
 }
 
 }

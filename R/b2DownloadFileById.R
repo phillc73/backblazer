@@ -1,12 +1,51 @@
-# B2 Download File by ID
+#' Download B2 File by ID.
+#'
+#' \code{b2DownloadFileById} downloads a file from the user's account on the
+#' Backblaze B2 cloud storage product.
+#'
+#' This function downloads a file from the user's account on the Backblaze B2
+#' cloud storage product using the file's unique ID only. Files of the same name
+#' may have multiple versions stored on B2. Therefore, every file version will
+#' have a unique ID, which can be used for downloading that specific version.
+#' Further details regarding this API call are available here:
+#'
+#' \url{https://www.backblaze.com/b2/docs/b2_download_file_by_id.html}
+#'
+#' B2 Download File by ID \code{fileId} is mandatory and must be user defined.
+#' \code{overwrite} is optionally user defined and defaults to FALSE.
+#'
+#' @param fileId The unique identifier of the file to be downloaded. File IDs
+#'   may be obtained through the \code{b2ListFiles}, \code{b2ListFileVersions}
+#'   and \code{b2UploadFile} functions in this package.
+#' @param overwrite Binary TRUE or FALSE decision to overwrite any files in the
+#'   current working directory, whose names match the downloaded file(s) name.
+#' @return If successful the response headers include the Content-Type that was
+#'   specified when the file was uploaded. They also include the X-Bz-FileName
+#'   and X-Bz-Content-Sha1 headers. The X-Bz-FileName uses percent-encoding, as
+#'   if it were a URL parameter. If successful, the file will be downloaded to
+#'   the current working directory.
+#'
+#' @examples
+#' \dontrun{
+#' b2DownloadFileById(fileId = "Unique_identifier_of_the_file_to_download",
+#' overwrite = TRUE)
+#' }
+#'
 
-b2DownloadFileById <- function(fileId, overwrite = FALSE){
-
+b2DownloadFileById <- function(fileId, overwrite = FALSE) {
   # Function options from input, make a dataframe
   fileId <- as.data.frame(fileId, stringsAsFactors = FALSE)
 
   # API call
-  b2Return <- httr::POST(paste(accountAuthorization$downloadUrl,"/b2api/v1/b2_download_file_by_id", sep=""), body = jsonlite::toJSON(unbox(fileId), pretty = TRUE), add_headers('Authorization' = as.character(accountAuthorization$authorizationToken)), write_disk("tmp", overwrite = overwrite))
+  b2Return <-
+    httr::POST(
+      paste(
+        accountAuthorization$downloadUrl,"/b2api/v1/b2_download_file_by_id", sep =
+          ""
+      ), body = jsonlite::toJSON(unbox(fileId), pretty = TRUE), add_headers(
+        'Authorization' = as.character(accountAuthorization$authorizationToken)
+      ), write_disk("tmp", overwrite = overwrite)
+    )
 
   # Alternative GET call
   # b2Return <- httr::GET(url = paste(accountAuthorization$downloadUrl,"/b2api/v1/b2_download_file_by_id?fileId=", fileId, sep=""), add_headers('Authorization' = as.character(accountAuthorization$authorizationToken)), write_disk("tmp", overwrite))
@@ -21,15 +60,16 @@ b2DownloadFileById <- function(fileId, overwrite = FALSE){
 
   } else {
     # Rename tmp
-    if (file.exists(b2Return$headers$'x-bz-file-name') & !isTRUE(overwrite)) {
+    if (file.exists(b2Return$headers$'x-bz-file-name') &
+        !isTRUE(overwrite)) {
       print("Unable to write to disk. File(s) exist and overwrite is set to FALSE")
     }
 
     else {
-    renameResult <- file.rename(from = "tmp", to = b2Return$headers$'x-bz-file-name')
-    # Output message
-    print("File(s) downloaded successfully and saved to disk.")
+      renameResult <-
+        file.rename(from = "tmp", to = b2Return$headers$'x-bz-file-name')
+      # Output message
+      print("File(s) downloaded successfully and saved to disk.")
     }
   }
 }
-

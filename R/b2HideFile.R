@@ -1,7 +1,34 @@
-# Hide File
+#' B2 Hide File.
+#'
+#' \code{b2HideFile} hides a file in the user's account on the Backblaze B2
+#' cloud storage product, so that it cannot be downloaded by name.
+#'
+#' This function hides a file in the user's account on the Backblaze B2 cloud
+#' storage product, so that it cannot be downloaded by name. In order to further
+#' understand the concept of B2 file versions, see the speficic Backblaze
+#' documenation. Further details regarding this API call are available here:
+#'
+#' \url{https://www.backblaze.com/b2/docs/b2_hide_file.html}
+#' \url{https://www.backblaze.com/b2/docs/file_versions.html}
+#'
+#' B2 Hide File \code{bucketId} \code{fileName} are mandatory and must be user
+#' defined.
+#'
+#' @param bucketId The unique identifier of the bucket containing the file to be
+#'   hidden. Bucket IDs may be obtained through the \code{b2ListBuckets}function
+#'   in this package.
+#' @param fileName The name of the file to be hidden. File names may be obtained
+#'   through the \code{b2ListFileNames} function in this package.
+#' @return If successful a list will be returned containing \code{fileId},
+#'   \code{fileName}, \code{action}, \code{size} and \code{uploadTimestamp}.
+#'
+#' @examples
+#' \dontrun{
+#' b2HideFile(bucketId = "aUniqueBucketId", fileName = "yourFileName.txt")
+#' }
+#'
 
-b2HideFile <- function(bucketId, fileName){
-
+b2HideFile <- function(bucketId, fileName) {
   # Function options from input, make a dataframe
   fileName <- as.data.frame(fileName, stringsAsFactors = FALSE)
   bucketId <- as.data.frame(bucketId, stringsAsFactors = FALSE)
@@ -10,7 +37,14 @@ b2HideFile <- function(bucketId, fileName){
   vars <- cbind(bucketId, fileName)
 
   # API call
-  b2Return <- httr::POST(paste(accountAuthorization$apiUrl,"/b2api/v1/b2_hide_file", sep=""), body = jsonlite::toJSON(unbox(vars), pretty = TRUE), add_headers('Authorization' = as.character(accountAuthorization$authorizationToken)))
+  b2Return <-
+    httr::POST(
+      paste(
+        accountAuthorization$apiUrl,"/b2api/v1/b2_hide_file", sep = ""
+      ), body = jsonlite::toJSON(unbox(vars), pretty = TRUE), add_headers(
+        'Authorization' = as.character(accountAuthorization$authorizationToken)
+      )
+    )
 
   # Check for bad authorisation and sent message
   if (httr::status_code(b2Return) != "200") {
