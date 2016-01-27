@@ -9,7 +9,7 @@
 #'
 #' \url{https://www.backblaze.com/b2/docs/b2_get_file_info.html}
 #'
-#' B2 Get File Info \code{fileId} is mandatory and must be user defined.
+#' \code{fileId} is mandatory and must be user defined.
 #'
 #' @param fileId The unique identifier of the file whose information is
 #'   required. File IDs may be obtained through the \code{b2ListFiles},

@@ -15,7 +15,7 @@ this package.}
 obtained through the \code{b2ListFileNames} function in this package.}
 
 \item{overwrite}{Binary TRUE or FALSE decision to overwrite any files in the
-current working directory, whose names match the downloaded file(s) name.}
+current working directory, whose names match the downloaded file name.}
 }
 \value{
 If successful the response headers include the Content-Type that was
@@ -37,9 +37,8 @@ this API call are available here:
 
 \url{https://www.backblaze.com/b2/docs/b2_download_file_by_name.html}
 
-B2 Download File by Name \code{fileName} and \code{bucketName} are mandatory
-and must be user defined. \code{overwrite} is optionally user defined and
-defaults to FALSE.
+\code{fileName} and \code{bucketName} are mandatory and must be user defined.
+\code{overwrite} is optionally user defined and defaults to FALSE.
 }
 \examples{
 \dontrun{

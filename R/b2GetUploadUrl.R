@@ -1,19 +1,20 @@
-#' B2 Get Upload URL.
+#' Get B2 Upload URL.
 #'
 #' \code{b2GetUploadUrl} returns the URL required in order to upload files to
 #' the user's account on the Backblaze B2 cloud storage product.
 #'
 #' This function returns the URL required in order to upload files the user's
 #' account on the Backblaze B2 cloud storage product. An uploadUrl and upload
-#' authorizationToken are valid for 24 hours or until the endpoint rejects an
-#' upload, Further details regarding this API call are available here:
+#' authorizationToken are also returned. These are valid for 24 hours or until
+#' the endpoint rejects an upload, Further details regarding this API call are
+#' available here:
 #'
 #' \url{https://www.backblaze.com/b2/docs/b2_get_upload_url.html}
 #'
-#' B2 Get Upload URL \code{bucketId} is mandatory and must be user defined.
+#' \code{bucketId} is mandatory and must be user defined.
 #'
-#' @param bucketId The unique identifier of the bucket for the desired bucket
-#'   where files are to be uploaded. Bucket IDs may be obtained through the
+#' @param bucketId The unique identifier of the bucket where files are to be
+#'   uploaded. Bucket IDs may be obtained through the
 #'   \code{b2ListBuckets}function in this package.
 #' @return If successful a list will be returned containing \code{bucketId},
 #'   \code{uploadURL} and \code{authorizationToken}.

@@ -34,8 +34,8 @@ organisation. Further details regarding this API call are available here:
 
 \url{https://www.backblaze.com/b2/docs/b2_create_bucket.html}
 
-B2 Create Bucket \code{buckeName} and \code{bucketType} are mandatory and
-must be user defined.
+\code{bucketName} and \code{bucketType} are mandatory and must be user
+defined.
 }
 \examples{
 \dontrun{

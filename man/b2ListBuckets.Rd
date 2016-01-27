@@ -2,7 +2,7 @@
 % Please edit documentation in R/b2ListBuckets.R
 \name{b2ListBuckets}
 \alias{b2ListBuckets}
-\title{B2 List Buckets.}
+\title{List B2 Buckets.}
 \usage{
 b2ListBuckets()
 }
@@ -22,9 +22,9 @@ regarding this API call are available here:
 
 \url{https://www.backblaze.com/b2/docs/b2_list_buckets.html}
 
-B2 List Buckets does not support any function options. However, a the
-function must be authorised through the \code{b2AuthorizeAccount} function
-first.
+\code{b2ListBuckets} does not support any function options. However, the
+function must first be authorised through the \code{b2AuthorizeAccount}
+function.
 }
 \examples{
 \dontrun{

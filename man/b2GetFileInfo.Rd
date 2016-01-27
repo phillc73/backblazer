@@ -28,7 +28,7 @@ call are available here:
 
 \url{https://www.backblaze.com/b2/docs/b2_get_file_info.html}
 
-B2 Get File Info \code{fileId} is mandatory and must be user defined.
+\code{fileId} is mandatory and must be user defined.
 }
 \examples{
 \dontrun{

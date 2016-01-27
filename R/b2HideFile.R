@@ -1,7 +1,7 @@
-#' B2 Hide File.
+#' Hide B2 File.
 #'
 #' \code{b2HideFile} hides a file in the user's account on the Backblaze B2
-#' cloud storage product, so that it cannot be downloaded by name.
+#' cloud storage product.
 #'
 #' This function hides a file in the user's account on the Backblaze B2 cloud
 #' storage product, so that it cannot be downloaded by name. In order to further
@@ -11,12 +11,11 @@
 #' \url{https://www.backblaze.com/b2/docs/b2_hide_file.html}
 #' \url{https://www.backblaze.com/b2/docs/file_versions.html}
 #'
-#' B2 Hide File \code{bucketId} \code{fileName} are mandatory and must be user
-#' defined.
+#' \code{bucketId} \code{fileName} are mandatory and must be user defined.
 #'
 #' @param bucketId The unique identifier of the bucket containing the file to be
-#'   hidden. Bucket IDs may be obtained through the \code{b2ListBuckets}function
-#'   in this package.
+#'   hidden. Bucket IDs may be obtained through the \code{b2ListBuckets}
+#'   function in this package.
 #' @param fileName The name of the file to be hidden. File names may be obtained
 #'   through the \code{b2ListFileNames} function in this package.
 #' @return If successful a list will be returned containing \code{fileId},

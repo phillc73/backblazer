@@ -27,7 +27,7 @@ are available here:
 
 \url{https://www.backblaze.com/b2/docs/b2_delete_bucket.html}
 
-B2 Delete Bucket \code{buckeId} is mandatory and must be user defined.
+\code{bucketId} is mandatory and must be user defined.
 }
 \examples{
 \dontrun{

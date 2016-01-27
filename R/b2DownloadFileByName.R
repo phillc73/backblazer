@@ -11,9 +11,8 @@
 #'
 #' \url{https://www.backblaze.com/b2/docs/b2_download_file_by_name.html}
 #'
-#' B2 Download File by Name \code{fileName} and \code{bucketName} are mandatory
-#' and must be user defined. \code{overwrite} is optionally user defined and
-#' defaults to FALSE.
+#' \code{fileName} and \code{bucketName} are mandatory and must be user defined.
+#' \code{overwrite} is optionally user defined and defaults to FALSE.
 #'
 #' @param fileName The name of the file to be downloaded. File names may be
 #'   obtained through the \code{b2ListFileNames} function in this package.
@@ -21,7 +20,7 @@
 #'   Bucket names may be obtained through the \code{b2ListBuckets} function in
 #'   this package.
 #' @param overwrite Binary TRUE or FALSE decision to overwrite any files in the
-#'   current working directory, whose names match the downloaded file(s) name.
+#'   current working directory, whose names match the downloaded file name.
 #' @return If successful the response headers include the Content-Type that was
 #'   specified when the file was uploaded. They also include the X-Bz-FileName
 #'   and X-Bz-Content-Sha1 headers. The X-Bz-FileName uses percent-encoding, as

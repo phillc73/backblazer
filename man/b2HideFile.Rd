@@ -2,14 +2,14 @@
 % Please edit documentation in R/b2HideFile.R
 \name{b2HideFile}
 \alias{b2HideFile}
-\title{B2 Hide File.}
+\title{Hide B2 File.}
 \usage{
 b2HideFile(bucketId, fileName)
 }
 \arguments{
 \item{bucketId}{The unique identifier of the bucket containing the file to be
-hidden. Bucket IDs may be obtained through the \code{b2ListBuckets}function
-in this package.}
+hidden. Bucket IDs may be obtained through the \code{b2ListBuckets}
+function in this package.}
 
 \item{fileName}{The name of the file to be hidden. File names may be obtained
 through the \code{b2ListFileNames} function in this package.}
@@ -20,7 +20,7 @@ If successful a list will be returned containing \code{fileId},
 }
 \description{
 \code{b2HideFile} hides a file in the user's account on the Backblaze B2
-cloud storage product, so that it cannot be downloaded by name.
+cloud storage product.
 }
 \details{
 This function hides a file in the user's account on the Backblaze B2 cloud
@@ -31,8 +31,7 @@ documenation. Further details regarding this API call are available here:
 \url{https://www.backblaze.com/b2/docs/b2_hide_file.html}
 \url{https://www.backblaze.com/b2/docs/file_versions.html}
 
-B2 Hide File \code{bucketId} \code{fileName} are mandatory and must be user
-defined.
+\code{bucketId} \code{fileName} are mandatory and must be user defined.
 }
 \examples{
 \dontrun{

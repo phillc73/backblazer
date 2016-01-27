@@ -2,7 +2,7 @@
 % Please edit documentation in R/b2ListFileNames.R
 \name{b2ListFileNames}
 \alias{b2ListFileNames}
-\title{B2 List File Names.}
+\title{List B2 File Names.}
 \usage{
 b2ListFileNames(bucketId, startFileName = "", maxFileCount = 100)
 }
@@ -13,10 +13,11 @@ be listed. Bucket IDs may be obtained through the
 
 \item{startFileName}{The name of the file from which the list will start.
 This is an optional parameter. Not defining this parameter will result in
-the list starting from the newest file first.}
+the list starting from the newest file first. File names may be obtained
+through the \code{b2ListFileNames} function in this package.}
 
 \item{maxFileCount}{An integer defining the maximum number of file names to
-return. This is an optional parameter and default to 100. The maximum
+return. This is an optional parameter and defaults to 100. The maximum
 acceptable value is 1000.}
 }
 \value{
@@ -43,9 +44,9 @@ are available here:
 
 \url{https://www.backblaze.com/b2/docs/b2_list_file_names.html}
 
-B2 List File Names \code{bucketId} is mandatory and must be user defined.
-\code{startFileName} and \code{maxFileCount} are optional and may be defined
-by the user if so desired.
+\code{bucketId} is mandatory and must be user defined. \code{startFileName}
+and \code{maxFileCount} are optional and may be defined by the user if so
+desired.
 }
 \examples{
 \dontrun{

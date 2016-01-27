@@ -11,8 +11,8 @@
 #'
 #' \url{https://www.backblaze.com/b2/docs/b2_create_bucket.html}
 #'
-#' B2 Create Bucket \code{buckeName} and \code{bucketType} are mandatory and
-#' must be user defined.
+#' \code{bucketName} and \code{bucketType} are mandatory and must be user
+#' defined.
 #'
 #' @param bucketName Bucket names must be globally unique. No two users may have
 #'   buckets named the same. Bucket names may not start with \emph{b2}. Bucket
@@ -31,7 +31,6 @@
 #' bucketType = "allPublic")
 #' }
 #'
-
 
 b2CreateBucket <- function(bucketName, bucketType) {
   # Function options from input, make a dataframe

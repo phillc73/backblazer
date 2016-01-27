@@ -1,4 +1,4 @@
-#' B2 List Buckets.
+#' List B2 Buckets.
 #'
 #' \code{b2ListBuckets} lists buckets associated with an account, in
 #' alphabetical order by bucket ID.
@@ -9,9 +9,9 @@
 #'
 #' \url{https://www.backblaze.com/b2/docs/b2_list_buckets.html}
 #'
-#' B2 List Buckets does not support any function options. However, a the
-#' function must be authorised through the \code{b2AuthorizeAccount} function
-#' first.
+#' \code{b2ListBuckets} does not support any function options. However, the
+#' function must first be authorised through the \code{b2AuthorizeAccount}
+#' function.
 #'
 #' @return If successful a data frame will be returned containing
 #'   \code{accountId}, \code{bucketId}, \code{bucketName} and \code{bucketType}

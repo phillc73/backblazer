@@ -7,11 +7,12 @@
 b2DeleteFileVersion(fileName, fileId)
 }
 \arguments{
-\item{fileName}{The name of the file to be deleted.}
+\item{fileName}{The name of the file to be deleted. File names may be
+obtained through the \code{b2ListFileNames} function in this package.}
 
 \item{fileId}{The unique identifier of the file to be deleted. File IDs may
-be obtained through the \code{b2UploadFile}, \code{b2ListFileNames},
-or \code{b2ListFileVersions} functions in this package.}
+be obtained through the \code{b2UploadFile}, \code{b2ListFileNames}, or
+\code{b2ListFileVersions} functions in this package.}
 }
 \value{
 If successful a list containing the \code{fileId} and \code{fileName}
@@ -32,8 +33,7 @@ here:
 
 \url{https://www.backblaze.com/b2/docs/b2_delete_file_version.html}
 
-B2 Delete File Version \code{fileName} and \code{fileId} are mandatory and
-must be user defined.
+\code{fileName} and \code{fileId} are mandatory and must be user defined.
 }
 \examples{
 \dontrun{

@@ -9,7 +9,7 @@
 #'
 #' \url{https://www.backblaze.com/b2/docs/b2_delete_bucket.html}
 #'
-#' B2 Delete Bucket \code{buckeId} is mandatory and must be user defined.
+#' \code{bucketId} is mandatory and must be user defined.
 #'
 #' @param bucketId The unique identifier of the bucket to be deleted. A
 #'   list of all the user's bucket IDs may be found using the

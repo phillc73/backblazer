@@ -1,4 +1,4 @@
-#' B2 List File Names.
+#' List B2 File Names.
 #'
 #' \code{b2ListFileNames} lists the names of all files in a bucket, starting at
 #' a given name.
@@ -12,18 +12,19 @@
 #'
 #' \url{https://www.backblaze.com/b2/docs/b2_list_file_names.html}
 #'
-#' B2 List File Names \code{bucketId} is mandatory and must be user defined.
-#' \code{startFileName} and \code{maxFileCount} are optional and may be defined
-#' by the user if so desired.
+#' \code{bucketId} is mandatory and must be user defined. \code{startFileName}
+#' and \code{maxFileCount} are optional and may be defined by the user if so
+#' desired.
 #'
 #' @param bucketId The unique identifier of the bucket containing the files to
 #'   be listed. Bucket IDs may be obtained through the
 #'   \code{b2ListBuckets}function in this package.
 #' @param startFileName The name of the file from which the list will start.
 #'   This is an optional parameter. Not defining this parameter will result in
-#'   the list starting from the newest file first.
+#'   the list starting from the newest file first. File names may be obtained
+#'   through the \code{b2ListFileNames} function in this package.
 #' @param maxFileCount An integer defining the maximum number of file names to
-#'   return. This is an optional parameter and default to 100. The maximum
+#'   return. This is an optional parameter and defaults to 100. The maximum
 #'   acceptable value is 1000.
 #' @return If successful a list will be returned containing \code{files} and
 #'   \code{nextFileName}, for files within the specified bucket. If greater than

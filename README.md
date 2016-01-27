@@ -1,9 +1,36 @@
 Backblazer
 =======
 
-An R package for [Backblaze's B2 API](https://www.backblaze.com/b2/docs/)
+An R package for [Backblaze's B2 API](https://www.backblaze.com/b2/docs/). 
+This package provides convenience functions for the Backblaze's B2
+cloud storage API. All B2 API calls are mapped to equivalent R functions.
+This package allows R programs upload, download and delete files from B2.
 
-The following functions exist and appear to work as intended:
+## Quick start
+
+### Install
+
+```r
+# install.packages("devtools")
+devtools::install_github("phillc73/backblazer")
+library("backblazer")
+```
+### Required Packages
+
+The following additional R packages are required.
+
+```r
+# Requires a minimum of version 1.0.0
+library("httr")
+# Requires a minimum of version 0.9.19
+library("jsonlite")
+# Requires a minimum of version 0.9.1
+library("openssl")
+# Requires a minimum of version 3.2.1
+library("tools")
+```
+
+## Supported Functions
 
 ```
 ?b2AuthorizeAccount
@@ -21,13 +48,32 @@ The following functions exist and appear to work as intended:
 ?b2UpdateBucket
 ?b2UploadFile
 ```
-This list covers all Backblaze B2 API functions. All mandatory parameters are included for the functions to operate. No optional parameters are included. It is currently possible to upload, download and delete files in a Backblaze B2 account using this package.
+This list covers all Backblaze B2 API functions. Each function contains documented descriptions for their use. All mandatory parameters are included for the functions to operate. Some optional parameters are included. It is currently possible to upload, download, list, hide and delete files in a Backblaze B2 account using this package.
 
-Documentation started but not yet finished. Please refer directly to the [Backblaze B2 API documentation](https://www.backblaze.com/b2/docs/) for now.
+Please refer directly to the [Backblaze B2 API documentation](https://www.backblaze.com/b2/docs/) for even further information.
+
+## Status
+
+This should be largely complete and covers all Backblaze B2 API calls.
+
+Current Version: 0.1
+
+### Issues
+
+Problems? Something just doesn't work?
+
+[Submit issues here](https://github.com/phillc73/backblazer/issues).
+
+## Links
+
+* [Backblaze B2](https://www.backblaze.com/b2/cloud-storage.html)
+* [Backblaze B2 Documentation](https://www.backblaze.com/b2/docs/)
+* [Author's Website](http://www.starkingdom.co.uk)
+* [Author on Twitter](https://twitter.com/_starkingdom)
 
 ## Disclaimer
 
-Be careful with your stuff. This is a very early alpha version of this package. Things may go badly wrong.
+The `backblazer` package is provided with absolutely no warranty. All `backblazer` functions have been tested and should work, but they may not work as you think they do. Be careful with your stuff. Things may go wrong. Author accepts no responsibility for lost, damaged or otherwise soiled files. 
 
 
 
