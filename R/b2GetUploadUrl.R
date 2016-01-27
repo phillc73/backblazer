@@ -37,7 +37,7 @@ b2GetUploadUrl <- function(bucketId) {
     httr::POST(
       paste(
         accountAuthorization$apiUrl,"/b2api/v1/b2_get_upload_url", sep = ""
-      ), body = jsonlite::toJSON(jsonlite::unbox(bucketId), pretty = TRUE), httr::httr::add_headers(
+      ), body = jsonlite::toJSON(jsonlite::unbox(bucketId), pretty = TRUE), httr::add_headers(
         'Authorization' = as.character(accountAuthorization$authorizationToken)
       )
     )
