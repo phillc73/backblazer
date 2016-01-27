@@ -61,14 +61,14 @@ b2UploadFile <- function(authToken, uploadUrl, fileName) {
   # API call
   b2Return <-
     httr::POST(
-      uploadUrl, body = upload_file(fileName), add_headers(
+      uploadUrl, body = httr::upload_file(fileName), httr::add_headers(
         'Authorization' = as.character(authToken), 'X-Bz-File-Name' = as.character(fileNameEncoded), 'Content-Type' = as.character(b2ContentType), 'Content-Length' = as.character(fileSize), 'X-Bz-Content-Sha1' = as.character(sha1Hash)
       )
     )
 
   # Check for bad authorisation and sent message
   if (httr::status_code(b2Return) != "200") {
-    badReturn <- jsonlite::fromJSON(content(b2Return,type = "text"))
+    badReturn <- jsonlite::fromJSON(httr::content(b2Return,type = "text"))
     stop(
       "\nSomething went wrong. Please check the function options to ensure valid values. \n",
       "\nStatus Code: ", badReturn$code, "\nMessage: ", badReturn$message
@@ -76,6 +76,6 @@ b2UploadFile <- function(authToken, uploadUrl, fileName) {
 
   } else {
     # Output as dataframe
-    jsonlite::fromJSON(content(b2Return, type = "text"))
+    jsonlite::fromJSON(httr::content(b2Return, type = "text"))
   }
 }

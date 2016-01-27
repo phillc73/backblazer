@@ -31,14 +31,14 @@ b2ListBuckets <- function() {
       paste(
         accountAuthorization$apiUrl,"/b2api/v1/b2_list_buckets?accountId=",accountAuthorization$accountId,sep =
           ""
-      ), add_headers(
+      ), httr::add_headers(
         'Authorization' = as.character(accountAuthorization$authorizationToken)
       )
     )
 
   # Check for bad authorisation and sent message
   if (httr::status_code(b2Return) != "200") {
-    badReturn <- jsonlite::fromJSON(content(b2Return,type = "text"))
+    badReturn <- jsonlite::fromJSON(httr::content(b2Return,type = "text"))
     stop(
       "\nSomething went wrong. Please check the function options to ensure valid values. \n",
       "\nStatus Code: ", badReturn$code, "\nMessage: ", badReturn$message
@@ -46,7 +46,7 @@ b2ListBuckets <- function() {
 
   } else {
     # Output as dataframe
-    b2Return <- jsonlite::fromJSON(content(b2Return, type = "text"))
+    b2Return <- jsonlite::fromJSON(httr::content(b2Return, type = "text"))
     b2Return[[1]]
   }
 }

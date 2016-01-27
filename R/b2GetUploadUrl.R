@@ -37,14 +37,14 @@ b2GetUploadUrl <- function(bucketId) {
     httr::POST(
       paste(
         accountAuthorization$apiUrl,"/b2api/v1/b2_get_upload_url", sep = ""
-      ), body = jsonlite::toJSON(unbox(bucketId), pretty = TRUE), add_headers(
+      ), body = jsonlite::toJSON(jsonlite::unbox(bucketId), pretty = TRUE), httr::httr::add_headers(
         'Authorization' = as.character(accountAuthorization$authorizationToken)
       )
     )
 
   # Check for bad authorisation and sent message
   if (httr::status_code(b2Return) != "200") {
-    badReturn <- jsonlite::fromJSON(content(b2Return,type = "text"))
+    badReturn <- jsonlite::fromJSON(httr::content(b2Return,type = "text"))
     stop(
       "\nSomething went wrong. Please check the function options to ensure valid values. \n",
       "\nStatus Code: ", badReturn$code, "\nMessage: ", badReturn$message
@@ -52,6 +52,6 @@ b2GetUploadUrl <- function(bucketId) {
 
   } else {
     # Output as dataframe
-    jsonlite::fromJSON(content(b2Return, type = "text"))
+    jsonlite::fromJSON(httr::content(b2Return, type = "text"))
   }
 }

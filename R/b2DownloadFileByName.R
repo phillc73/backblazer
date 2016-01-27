@@ -50,14 +50,14 @@ b2DownloadFileByName <-
         url = paste(
           accountAuthorization$downloadUrl,"/file/", bucketName, "/", fileName, sep =
             ""
-        ), add_headers(
+        ), httr::add_headers(
           'Authorization' = as.character(accountAuthorization$authorizationToken)
-        ), write_disk("tmp", overwrite = overwrite)
+        ), httr::write_disk("tmp", overwrite = overwrite)
       )
 
     # Check for bad authorisation and sent message
     if (httr::status_code(b2Return) != "200") {
-      badReturn <- jsonlite::fromJSON(content(b2Return,type = "text"))
+      badReturn <- jsonlite::fromJSON(httr::content(b2Return,type = "text"))
       stop(
         "\nSomething went wrong. Please check the function options to ensure valid values. \n",
         "\nStatus Code: ", badReturn$code, "\nMessage: ", badReturn$message

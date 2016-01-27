@@ -72,14 +72,14 @@ b2ListFileVersions <-
       httr::POST(
         paste(
           accountAuthorization$apiUrl,"/b2api/v1/b2_list_file_versions", sep = ""
-        ), body = jsonlite::toJSON(unbox(vars), pretty = TRUE), add_headers(
+        ), body = jsonlite::toJSON(jsonlite::unbox(vars), pretty = TRUE), httr::add_headers(
           'Authorization' = as.character(accountAuthorization$authorizationToken)
         )
       )
 
     # Check for bad authorisation and sent message
     if (httr::status_code(b2Return) != "200") {
-      badReturn <- jsonlite::fromJSON(content(b2Return,type = "text"))
+      badReturn <- jsonlite::fromJSON(httr::content(b2Return,type = "text"))
       stop(
         "\nSomething went wrong. Please check the function options to ensure valid values. \n",
         "\nStatus Code: ", badReturn$code, "\nMessage: ", badReturn$message
@@ -87,6 +87,6 @@ b2ListFileVersions <-
 
     } else {
       # Output as dataframe
-      jsonlite::fromJSON(content(b2Return, type = "text"))
+      jsonlite::fromJSON(httr::content(b2Return, type = "text"))
     }
   }
