@@ -26,7 +26,7 @@ library("httr")
 library("jsonlite")
 # Requires a minimum of version 0.9.1
 library("openssl")
-# Requires a minimum of version 3.2.1
+# Requires a minimum of version 3.2.3. Included in base R.
 library("tools")
 ```
 
