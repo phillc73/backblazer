@@ -54,7 +54,7 @@ b2AuthorizeAccount <- function(url, accountId, authorizationKey) {
   accessToken <- openssl::base64_encode(accessToken)
   # GET the data
   b2Return <-
-    httr::GET(url = url, add_headers(Authorization = paste("Basic ", accessToken, sep =
+    httr::GET(url = url, httr::add_headers(Authorization = paste("Basic ", accessToken, sep =
                                                              "")))
 
   # Check for bad authorisation and sent message
