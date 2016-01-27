@@ -53,8 +53,8 @@ b2UploadFile <- function(authToken, uploadUrl, fileName) {
   # Get file extension
   fileNameExtension <- tools::file_ext(fileName)
   # File Types List
-  b2FileTypes <- system.file("extdata", "b2FileTypes.rds", package = "backblazer")
-  b2FileTypes <- readRDS(b2FileTypes)
+  b2FileTypesLocation <- system.file("extdata", "b2FileTypes.rds", package = "backblazer")
+  b2FileTypes <- readRDS(b2FileTypesLocation)
   b2ContentType <-
     b2FileTypes$contentType[grepl(fileNameExtension, b2FileTypes$fileExtension) == TRUE]
 

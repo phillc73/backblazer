@@ -66,6 +66,8 @@ b2ListFileVersions <-
 
     # Bind function option data frames together
     vars <- cbind(bucketId, startFileName, startFileId, maxFileCount)
+    # Remove empty values
+    vars <- vars[, colSums(vars != "") != 0]
 
     # API call
     b2Return <-

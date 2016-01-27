@@ -55,6 +55,8 @@ b2ListFileNames <-
 
     # Bind function option data frames together
     vars <- cbind(bucketId, startFileName, maxFileCount)
+    # Remove empty values
+    vars <- vars[, colSums(vars != "") != 0]
 
     # API call
     b2Return <-
