@@ -2,7 +2,7 @@ Backblazer
 =======
 
 An R package for [Backblaze's B2 API](https://www.backblaze.com/b2/docs/). 
-This package provides convenience functions for the Backblaze's B2
+This package provides convenience functions for the Backblaze B2
 cloud storage API. All B2 API calls are mapped to equivalent R functions.
 This package allows R programs upload, download and delete files from B2.
 
