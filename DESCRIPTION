@@ -7,9 +7,9 @@ Author: Authors@R: person("Phill", "Clarke", email = "phill@starkingdom.co.uk",
     role = c("aut", "cre"))
 Maintainer: Phill Clarke <phill@starkingdom.co.uk>
 Description: This R package provides convenience functions for the Backblaze B2
-cloud storage API. All B2 API calls are mapped to equivalent R functions in this
-package. This package allows R programs toupload, download and delete files from
-B2.
+    cloud storage API. All B2 API calls are mapped to equivalent R functions in
+    this package. This package allows R programs toupload, download and delete
+    files from B2.
 Depends:
     R (>= 3.2.3)
 License: MIT + file LICENSE
