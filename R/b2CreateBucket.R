@@ -31,6 +31,7 @@
 #' bucketType = "allPublic")
 #' }
 #'
+#' @export
 
 b2CreateBucket <- function(bucketName, bucketType) {
   # Function options from input, make a dataframe

@@ -21,5 +21,7 @@ Imports:
     jsonlite (>= 0.9.19),
     openssl (>= 0.9.1),
     tools (>= 3.2.3)
+Suggests:
+    knitr (>= 1.12)
 VignetteBuilder: knitr
 RoxygenNote: 5.0.1

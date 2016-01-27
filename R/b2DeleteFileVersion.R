@@ -29,6 +29,7 @@
 #'  fileId = "Unique_identifier_of_the_file_to_delete")
 #' }
 #'
+#' @export
 
 b2DeleteFileVersion <- function(fileName, fileId) {
   # Function options from input, make a dataframe

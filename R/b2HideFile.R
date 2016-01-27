@@ -26,6 +26,7 @@
 #' b2HideFile(bucketId = "aUniqueBucketId", fileName = "yourFileName.txt")
 #' }
 #'
+#' @export
 
 b2HideFile <- function(bucketId, fileName) {
   # Function options from input, make a dataframe

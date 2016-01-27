@@ -38,6 +38,7 @@
 #' b2UploadFile(authToken, uploadUrl, fileName = "yourFileName.png")
 #' }
 #'
+#' @export
 
 b2UploadFile <- function(authToken, uploadUrl, fileName) {
   # Function options from input, make a dataframe
@@ -52,7 +53,8 @@ b2UploadFile <- function(authToken, uploadUrl, fileName) {
   # Get file extension
   fileNameExtension <- tools::file_ext(fileName)
   # File Types List
-  b2FileTypes <- readRDS("data/b2FileTypes.rds")
+  b2FileTypes <- system.file("extdata", "b2FileTypes.rds", package = "backblazer")
+  b2FileTypes <- readRDS(b2FileTypes)
   b2ContentType <-
     b2FileTypes$contentType[grepl(fileNameExtension, b2FileTypes$fileExtension) == TRUE]
 

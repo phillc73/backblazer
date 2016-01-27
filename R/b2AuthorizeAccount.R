@@ -45,6 +45,7 @@
 #' authorizationKey = "YourAuthorisationKey")
 #' }
 #'
+#' @export
 
 b2AuthorizeAccount <- function(url, accountId, authorizationKey) {
   # Combine Account Id and Authorisation Key

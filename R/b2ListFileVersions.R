@@ -50,6 +50,7 @@
 #' maxFileCount = 500)
 #' }
 #'
+#' @export
 
 
 b2ListFileVersions <-

@@ -24,6 +24,7 @@
 #' b2GetFileInfo(fileId = "Unique_identifier_of_the_file")
 #' }
 #'
+#' @export
 
 
 b2GetFileInfo <- function(fileId) {

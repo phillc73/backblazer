@@ -22,6 +22,7 @@
 #' b2ListBuckets()
 #' }
 #'
+#' @export
 
 b2ListBuckets <- function() {
   # API call

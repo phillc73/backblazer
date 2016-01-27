@@ -23,6 +23,7 @@
 #' b2DeleteBucket(bucketId = "aUniqueBucketId")
 #' }
 #'
+#' @export
 
 b2DeleteBucket <- function(bucketId) {
   # Function options from input, make a dataframe

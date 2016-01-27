@@ -31,6 +31,7 @@
 #' b2UpdateBucket(bucketId = "aUniqueBucketId", bucketType = "allPublic")
 #' }
 #'
+#' @export
 
 b2UpdateBucket <- function(bucketId, bucketType) {
   # Function options from input, make a dataframe

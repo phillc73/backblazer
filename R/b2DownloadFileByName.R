@@ -33,6 +33,7 @@
 #' fileName = "yourFileName.txt", overwrite = TRUE)
 #' }
 #'
+#' @export
 
 b2DownloadFileByName <-
   function(bucketName, fileName, overwrite = FALSE) {

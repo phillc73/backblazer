@@ -26,6 +26,7 @@
 #' authToken <- uploadUrlReturn$authorizationToken
 #' }
 #'
+#' @export
 
 b2GetUploadUrl <- function(bucketId) {
   # Function options from input, make a dataframe

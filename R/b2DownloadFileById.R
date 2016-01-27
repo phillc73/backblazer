@@ -31,6 +31,7 @@
 #' overwrite = TRUE)
 #' }
 #'
+#' @export
 
 b2DownloadFileById <- function(fileId, overwrite = FALSE) {
   # Function options from input, make a dataframe

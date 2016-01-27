@@ -42,6 +42,7 @@
 #' maxFileCount = 500)
 #' }
 #'
+#' @export
 
 b2ListFileNames <-
   function(bucketId, startFileName = "", maxFileCount = 100) {
