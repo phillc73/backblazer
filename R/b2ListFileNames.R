@@ -46,6 +46,10 @@
 
 b2ListFileNames <-
   function(bucketId, startFileName = "", maxFileCount = 100) {
+    # Read Account Authorisation file
+    accountAuthorization <- NULL
+    accountAuthorization <- readRDS("accountAuthorization.rds")
+
     # Function options from input, make a dataframe
     bucketId <- as.data.frame(bucketId, stringsAsFactors = FALSE)
     startFileName <-

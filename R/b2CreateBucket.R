@@ -34,6 +34,10 @@
 #' @export
 
 b2CreateBucket <- function(bucketName, bucketType) {
+  # Read Account Authorisation file
+  accountAuthorization <- NULL
+  accountAuthorization <- readRDS("accountAuthorization.rds")
+
   # Function options from input, make a dataframe
   accountId <- as.character(accountAuthorization$accountId)
   accountId <- as.data.frame(accountId, stringsAsFactors = FALSE)

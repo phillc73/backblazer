@@ -37,6 +37,10 @@
 
 b2DownloadFileByName <-
   function(bucketName, fileName, overwrite = FALSE) {
+    # Read Account Authorisation file
+    accountAuthorization <- NULL
+    accountAuthorization <- readRDS("accountAuthorization.rds")
+
     # Function options from input, make a dataframe
     fileName <- as.data.frame(fileName, stringsAsFactors = FALSE)
     bucketName <- as.data.frame(bucketName, stringsAsFactors = FALSE)

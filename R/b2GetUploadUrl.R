@@ -29,6 +29,10 @@
 #' @export
 
 b2GetUploadUrl <- function(bucketId) {
+  # Read Account Authorisation file
+  accountAuthorization <- NULL
+  accountAuthorization <- readRDS("accountAuthorization.rds")
+
   # Function options from input, make a dataframe
   bucketId <- as.data.frame(bucketId, stringsAsFactors = FALSE)
 

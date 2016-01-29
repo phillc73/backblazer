@@ -25,6 +25,10 @@
 #' @export
 
 b2ListBuckets <- function() {
+  # Read Account Authorisation file
+  accountAuthorization <- NULL
+  accountAuthorization <- readRDS("accountAuthorization.rds")
+
   # API call
   b2Return <-
     httr::GET(

@@ -32,11 +32,15 @@
 #'   Application Key} hypertext from the B2 My Account area, after logging in
 #'   with a web browser.
 #' @return If successful, an authorisation token will be returned and stored in
-#'   a global variable named \code{accountAuthorization}. This token will be
-#'   used in all other functions in this package. Specific B2 documentation
-#'   regarding this API call can be found here:
+#'   an Rds file called \emph{accountAuthorization.Rds} in the current working
+#'   directory. The data in this Rds file will be used in all other functions in
+#'   this package. Specific B2 documentation regarding this API call can be
+#'   found here:
 #'
 #'   \url{https://www.backblaze.com/b2/docs/b2_authorize_account.html}
+#'
+#' @section Note: Consider programmtically deleting
+#'   \emph{accountAuthorization.Rds} on exit.
 #'
 #' @examples
 #' \dontrun{
@@ -55,20 +59,20 @@ b2AuthorizeAccount <- function(url, accountId, authorizationKey) {
   # GET the data
   b2Return <-
     httr::GET(url = url, httr::add_headers(Authorization = paste("Basic ", accessToken, sep =
-                                                             "")))
+                                                                   "")))
 
   # Check for bad authorisation and sent message
   if (httr::status_code(b2Return) != "200") {
-    badReturn <- jsonlite::fromJSON(httr::content(b2Return,type = "text"))
+    badReturn <-
+      jsonlite::fromJSON(httr::content(b2Return,type = "text"))
     stop(
       "Status Code: ", badReturn$code, "\n Message: ", badReturn$message, "\nPlease check your account ID and Authorisation Key. Remember, a new Authorisation key is generated every time you click 'Create application key' in the B2 web interface. \n"
     )
 
   } else {
     # Output as dataframe. Global variable, ooooohh
-    accountAuthorization <<-
+    accountAuthorization <-
       as.data.frame(jsonlite::fromJSON(httr::content(b2Return, type = "text")))
+    saveRDS(accountAuthorization, "accountAuthorization.rds")
   }
 }
-
-

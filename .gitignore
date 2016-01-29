@@ -3,3 +3,4 @@
 .RData
 credentials.txt
 demos.R
+inst/doc

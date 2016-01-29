@@ -29,6 +29,10 @@
 #' @export
 
 b2HideFile <- function(bucketId, fileName) {
+  # Read Account Authorisation file
+  accountAuthorization <- NULL
+  accountAuthorization <- readRDS("accountAuthorization.rds")
+
   # Function options from input, make a dataframe
   fileName <- as.data.frame(fileName, stringsAsFactors = FALSE)
   bucketId <- as.data.frame(bucketId, stringsAsFactors = FALSE)
