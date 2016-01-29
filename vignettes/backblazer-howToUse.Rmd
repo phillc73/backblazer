@@ -1,0 +1,160 @@
+---
+title: "How to Use backblazer"
+author: "Phill Clarke"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{How to Use backblazer}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## backblazer - What is it?
+
+If you've made it this far, you will know by now that `backblazer` is an R package providing bindings to the [Backblaze B2 cloud storage](https://www.backblaze.com/b2/cloud-storage.html) API. All B2 API calls are covered in the `backblazer` package and all [required B2 API parameters](https://www.backblaze.com/b2/docs/) are present. Most optional B2 API parameters are also included.
+
+Backblaze's B2 product provides cheap and basic file storage in the cloud. It is targetted at developers and, apart from a web-based browser UI, Backblaze does not provide any file transfer or synchronisation clients.
+
+B2 does not support deep, folder based, tree structures. There is only the concept of individual buckets at the root level to aid file organisation.
+
+### Getting Started
+
+First, [register for an account on Backblaze B2](https://www.backblaze.com/b2/sign-up.html). The default page after logging in is a view of all available buckets. On this page will be a link to *Show Account ID and Application Key*. Click this only once. Make a note of the Account ID and Application Key. Every time this link is clicked, a new Application Key is generated.
+
+### Authorisation
+
+It's very straightforward.
+
+```{r, eval = FALSE}
+b2AuthorizeAccount(url = "https://api.backblaze.com/b2api/v1/b2_authorize_account", 
+                   accountId = "yourAccountId", authorizationKey = "yourAuthorisationKey")
+```
+
+Obviously substitute your actual Account ID and Authorisation Key for the placeholders.
+
+You must authorise your account first. Nothing else in this package will work until the account has been authorised. This function will ultimately save an Rds file named `accountAuthorization.Rds` in the current working directory. This file is then silently used with all other functions in the package. 
+
+**Note:** Consider programatically deleting `accountAuthorization.Rds` on exit. A new Rds file will be written each time `b2AuthorizeAccount` is executed.
+
+### Working with Buckets
+
+Before any files can be uploaded, a first bucket must be created.
+
+```{r, eval = FALSE}
+b2CreateBucket(bucketName = "a-unique-bucket-name", bucketType = "allPrivate")
+```
+
+Bucket names must be globally unique. That is, no two users may have the same bucket name. Therefore, a common word like `cats` is unlikely to be available. Buckets may only contain a mix of alpha-numeric characters and hyphens. No special characters, such as underscores, are accepted.
+
+There are just two bucket types: `allPublic` and `allPrivate`. They restrict bucket access as you would expect. Buckets marked `allPrivate` require a unique authorisation token to download files.
+
+All buckets are assigned a unique identifier. The unique identifier for all buckets in an account can be found with the `b2ListBuckets` function.
+
+```{r, eval = FALSE}
+b2ListBuckets()
+```
+
+`b2ListBuckets` accepts no further parameters. One column of the returned dataframe will contain the unique bucket IDs.
+
+Buckets may also be deleted.
+
+```{r, eval = FALSE}
+b2DeleteBucket(bucketId = "aUniqueBucketId")
+```
+
+Substitute the placeholder with a valid bucket ID, obtained via `b2ListBuckets`. Buckets still containing files cannot be deleted.
+
+The bucket type, `allPublic` or `allPrivate`, may also be changed.
+
+```{r, eval = FALSE}
+b2UpdateBucket(bucketId = "aUniqueBucketId", bucketType = "allPrivate-or-allPublic")
+```
+
+### Working with Files
+
+The first thing you probably want to do is upload a file. However, before this can be achieved, an upload URL must be obtained.
+
+```{r, eval = FALSE}
+uploadUrlReturn <- b2GetUploadUrl(bucketId = "ff062d0e23056cb55226081c")
+uploadUrl <- uploadUrlReturn$uploadUrl
+authToken <- uploadUrlReturn$authorizationToken
+```
+
+The authorisation token returned from `b2GetUploadUrl` is different to the account authorisation obtained with `b2AuthorizeAccount`. Do not confuse the two, or uploading files will not work. Both the upload URL and authorisation token are valid for 24 hours or until they're not. There is a concept of the endpoint rejecting an upload. If this happens, both the URL and authorisation token are invalidated. 
+
+It is possible to request multiple upload URLs, which can be used for faster, parallel uploading of multiple files.
+
+Armed with the upload URL and authorisation token, start uploading files.
+
+```{r, eval = FALSE}
+b2UploadFile(authToken, uploadUrl, fileName = "blah.txt")
+```
+
+This will upload a file, named `blah.txt` from the current working directory, using the upload URL and authorisation token obtained previously.
+
+Behind the scenes, this function creates an SHA1 hash of the file to be uploaded, which is matched against the same hash created by B2 when the file is received. If the hashes don't match, the upload is rejected.
+
+A complete list of accepted file types may be found in the `b2FileTypes.rds` file in this package. The file can be viewed manually if so desired.
+
+```{r, eval = TRUE}
+b2FileTypesLocation <- system.file("extdata", "b2FileTypes.rds", package = "backblazer")
+b2FileTypes <- readRDS(b2FileTypesLocation)
+```
+
+The same list is also available directly on the [B2 website](https://www.backblaze.com/b2/docs/content-types.html).
+
+Uploaded files may also be downloaded, but first it could be useful to view files on B2.
+
+Files can be listed by name.
+
+```{r, eval = FALSE}
+b2ListFileNames(bucketId = "aUniqueBucketId")
+```
+
+Or by version.
+
+```{r, eval = FALSE}
+b2ListFileVersions(bucketId = "aUniqueBucketId")
+```
+
+A B2 bucket may contain multiple files with the same name. This indicates multiple versions of the same file, based on upload time.
+
+It is possible to view further details for a single file.
+
+```{r, eval = FALSE}
+b2GetFileInfo(fileId = "a_unique_file_id")
+```
+
+The file ID is specific to each file version and may be obtained via `b2ListFileVersions`.
+
+If there is some reason to hide a file (perhaps one file in a public bucket should be hidden), that's also possible.
+
+```{r, eval = FALSE}
+b2HideFile(bucketId = "aUniqueBucketId", fileName = "blah.txt")
+```
+
+Files may be downloaded by specifying either the file name or file ID
+
+```{r, eval = FALSE}
+# Download file by name
+b2DownloadFileByName(bucketName = "aUniqueBucketName", fileName = "blah.txt", overwrite = TRUE)
+
+# Download file by ID
+b2DownloadFileById(fileId = "a_unique_file_id", overwrite = TRUE)
+```
+
+The `overwrite` parameter allows a local file of the same name to be overwritten, or not. `overwrite` defaults to FALSE, but is changed to TRUE in the above examples.
+
+Finally, it is possible to delete a file version. In order to completely remove a file from B2, all versions must be deleted.
+
+```{r, eval = FALSE}
+b2DeleteFileVersion(fileName = "blah.txt", fileId = "a_unique_file_id")
+```
+
+### Final Words
+
+All successful API calls return a JSON status of 200. If a different status is returned, the function called will print an error with more details. Generally these error messsages are quite informative and will help to pinpoint the problem.
+
+There is much more information, regarding each of the mapped functions in this package, available on the [Backblaze B2 documentation website](https://www.backblaze.com/b2/docs/). It is suggested to thoroughly read the notes found there. Or just get on with it, hope for the best and then search the B2 documentation if it all goes wrong.
+
+The `backblazer` package is provided with absolutely no warranty. All `backblazer` functions have been tested and should work, but they may not work as you think they do. Be careful with your stuff. Things may go wrong. Author accepts no responsibility for lost, damaged or otherwise soiled files.

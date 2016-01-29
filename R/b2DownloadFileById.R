@@ -34,6 +34,10 @@
 #' @export
 
 b2DownloadFileById <- function(fileId, overwrite = FALSE) {
+  # Read Account Authorisation file
+  accountAuthorization <- NULL
+  accountAuthorization <- readRDS("accountAuthorization.rds")
+
   # Function options from input, make a dataframe
   fileId <- as.data.frame(fileId, stringsAsFactors = FALSE)
 

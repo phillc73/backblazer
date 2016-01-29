@@ -41,9 +41,13 @@
 #' @export
 
 b2UploadFile <- function(authToken, uploadUrl, fileName) {
+  # Read Account Authorisation file
+  accountAuthorization <- NULL
+  accountAuthorization <- readRDS("accountAuthorization.rds")
+
   # Function options from input, make a dataframe
   # File Name
-  fileNameEncoded <- URLencode(fileName, reserved = TRUE)
+  fileNameEncoded <- utils::URLencode(fileName, reserved = TRUE)
   # File Size
   fileSize <- file.size(fileName)
   # sha1 hash of file

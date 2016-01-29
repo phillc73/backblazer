@@ -52,9 +52,12 @@
 #'
 #' @export
 
-
 b2ListFileVersions <-
   function(bucketId, startFileName = "", startFileId = "", maxFileCount = 100) {
+    # Read Account Authorisation file
+    accountAuthorization <- NULL
+    accountAuthorization <- readRDS("accountAuthorization.rds")
+
     # Function options from input, make a dataframe
     bucketId <- as.data.frame(bucketId, stringsAsFactors = FALSE)
     startFileName <-

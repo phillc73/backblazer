@@ -21,9 +21,10 @@ with a web browser.}
 }
 \value{
 If successful, an authorisation token will be returned and stored in
-  a global variable named \code{accountAuthorization}. This token will be
-  used in all other functions in this package. Specific B2 documentation
-  regarding this API call can be found here:
+  an Rds file called \emph{accountAuthorization.Rds} in the current working
+  directory. The data in this Rds file will be used in all other functions in
+  this package. Specific B2 documentation regarding this API call can be
+  found here:
 
   \url{https://www.backblaze.com/b2/docs/b2_authorize_account.html}
 }
@@ -50,6 +51,10 @@ API account authorization \code{url}, \code{accountId},
 
 Every time \code{b2AuthorizeAccount} is executed, a new login to Backblaze B2
 occurs. Don't login more than is necessary.
+}
+\section{Note}{
+ Consider programmtically deleting
+  \emph{accountAuthorization.Rds} on exit.
 }
 \examples{
 \dontrun{

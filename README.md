@@ -50,6 +50,10 @@ library("tools")
 ```
 This list covers all Backblaze B2 API functions. Each function contains documented descriptions for their use. All mandatory parameters are included for the functions to operate. Some optional parameters are included. It is currently possible to upload, download, list, hide and delete files in a Backblaze B2 account using this package.
 
+### How to Use
+
+A [more detailed vignette is available](https://github.com/phillc73/backblazer/blob/master/vignettes/backblazer-howToUse.Rmd) with details regarding how to use each of these functions.
+
 Please refer directly to the [Backblaze B2 API documentation](https://www.backblaze.com/b2/docs/) for even further information.
 
 ## Status

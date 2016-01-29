@@ -32,6 +32,10 @@
 #' @export
 
 b2DeleteFileVersion <- function(fileName, fileId) {
+  # Read Account Authorisation file
+  accountAuthorization <- NULL
+  accountAuthorization <- readRDS("accountAuthorization.rds")
+
   # Function options from input, make a dataframe
   fileName <- as.data.frame(fileName, stringsAsFactors = FALSE)
   fileId <- as.data.frame(fileId, stringsAsFactors = FALSE)

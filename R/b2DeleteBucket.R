@@ -26,6 +26,10 @@
 #' @export
 
 b2DeleteBucket <- function(bucketId) {
+  # Read Account Authorisation file
+  accountAuthorization <- NULL
+  accountAuthorization <- readRDS("accountAuthorization.rds")
+
   # Function options from input, make a dataframe
   accountId <- as.character(accountAuthorization$accountId)
   bucketId <- as.data.frame(bucketId, stringsAsFactors = FALSE)
