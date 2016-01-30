@@ -16,3 +16,7 @@ I'm new here.
 ## Note on Examples
 
 The Backblaze B2 API requires authentication. As such, none of the examples included in this package can be run.
+
+## Additional Fixes
+
+Re-titles package in DESCRIPTION and README, as requested by Uwe Ligges.
