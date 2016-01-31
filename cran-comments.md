@@ -21,3 +21,4 @@ The Backblaze B2 API requires authentication. As such, none of the examples incl
 
 Re-titles package in DESCRIPTION and README, as requested by Uwe Ligges.
 Changes to Description in DESCRIPTION, as requested by Uwe Ligges.
+Added link to API documentation in Description in DESCRIPTION, as requested by Kurt Hornik.
