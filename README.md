@@ -11,6 +11,14 @@ This package allows R programs upload, download and delete files from B2.
 
 ### Install
 
+The released version is available from CRAN
+
+```r
+install.packages("backblazer")
+library("backblazer")
+```
+Or the development version from GitHub
+
 ```r
 # install.packages("devtools")
 devtools::install_github("phillc73/backblazer")
