@@ -17,13 +17,23 @@ The released version is available from CRAN
 install.packages("backblazer")
 library("backblazer")
 ```
-Or the development version from GitHub
+
+Install the development version from GitLab
+
+```r
+# install.packages("devtools")
+devtools::install_git("https://gitlab.com/phillc73/backblazer.git")
+library("backblazer")
+```
+
+Or the development version from GitHub if you prefer
 
 ```r
 # install.packages("devtools")
 devtools::install_github("phillc73/backblazer")
 library("backblazer")
 ```
+
 ### Required Packages
 
 The following additional R packages are required.
@@ -61,7 +71,7 @@ This list covers all Backblaze B2 API functions. Each function contains document
 
 ### How to Use
 
-A [more detailed vignette is available](https://github.com/phillc73/backblazer/blob/master/vignettes/backblazer-howToUse.Rmd) with details regarding how to use each of these functions.
+A [more detailed vignette is available](../phillc73/backblazer/blob/master/vignettes/backblazer-howToUse.Rmd) with details regarding how to use each of these functions.
 
 Please refer directly to the [Backblaze B2 API documentation](https://www.backblaze.com/b2/docs/) for even further information.
 
@@ -75,7 +85,7 @@ Current Version: 0.1
 
 Problems? Something just doesn't work?
 
-[Submit issues here](https://github.com/phillc73/backblazer/issues).
+[Submit issues here](../phillc73/backblazer/issues).
 
 ## Links
 
@@ -87,8 +97,3 @@ Problems? Something just doesn't work?
 ## Disclaimer
 
 The `backblazer` package is provided with absolutely no warranty. All `backblazer` functions have been tested and should work, but they may not work as you think they do. Be careful with your stuff. Things may go wrong. Author accepts no responsibility for lost, damaged or otherwise soiled files. 
-
-
-
-
-
