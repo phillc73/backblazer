@@ -17,7 +17,6 @@ The released version is available from CRAN
 install.packages("backblazer")
 library("backblazer")
 ```
-
 Install the development version from GitLab
 
 ```r
@@ -71,7 +70,7 @@ This list covers all Backblaze B2 API functions. Each function contains document
 
 ### How to Use
 
-A [more detailed vignette is available](../vignettes/backblazer-howToUse.Rmd) with details regarding how to use each of these functions.
+A [more detailed vignette is available](https://github.com/phillc73/backblazer/blob/master/vignettes/backblazer-howToUse.Rmd) with details regarding how to use each of these functions.
 
 Please refer directly to the [Backblaze B2 API documentation](https://www.backblaze.com/b2/docs/) for even further information.
 
@@ -85,7 +84,7 @@ Current Version: 0.1
 
 Problems? Something just doesn't work?
 
-[Submit issues here](../issues).
+[Submit issues here](https://github.com/phillc73/backblazer/issues).
 
 ## Links
 
