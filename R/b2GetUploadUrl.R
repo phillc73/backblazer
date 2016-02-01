@@ -15,7 +15,7 @@
 #'
 #' @param bucketId The unique identifier of the bucket where files are to be
 #'   uploaded. Bucket IDs may be obtained through the
-#'   \code{b2ListBuckets}function in this package.
+#'   \code{b2ListBuckets} function in this package.
 #' @return If successful a list will be returned containing \code{bucketId},
 #'   \code{uploadURL} and \code{authorizationToken}.
 #'

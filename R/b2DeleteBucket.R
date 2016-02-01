@@ -13,7 +13,7 @@
 #'
 #' @param bucketId The unique identifier of the bucket to be deleted. A
 #'   list of all the user's bucket IDs may be found using the
-#'   \code{b2_list_buckets} function in this package.
+#'   \code{b2ListBuckets} function in this package.
 #' @return If successful a list containing the \code{accountId},
 #'   \code{bucketId}, \code{bucketName} and \code{bucketType} of the deleted
 #'   bucket will all be echoed back to the user.

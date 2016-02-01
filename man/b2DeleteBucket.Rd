@@ -9,7 +9,7 @@ b2DeleteBucket(bucketId)
 \arguments{
 \item{bucketId}{The unique identifier of the bucket to be deleted. A
 list of all the user's bucket IDs may be found using the
-\code{b2_list_buckets} function in this package.}
+\code{b2ListBuckets} function in this package.}
 }
 \value{
 If successful a list containing the \code{accountId},

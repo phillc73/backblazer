@@ -10,7 +10,7 @@ b2ListFileVersions(bucketId, startFileName = "", startFileId = "",
 \arguments{
 \item{bucketId}{The unique identifier of the bucket containing the files to
 be listed. Bucket IDs may be obtained through the
-\code{b2ListBuckets}function in this package.}
+\code{b2ListBuckets} function in this package.}
 
 \item{startFileName}{The name of the file from which the list will start. If
 there are no files with this name, the first version of the file with the

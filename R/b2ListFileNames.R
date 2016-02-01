@@ -18,7 +18,7 @@
 #'
 #' @param bucketId The unique identifier of the bucket containing the files to
 #'   be listed. Bucket IDs may be obtained through the
-#'   \code{b2ListBuckets}function in this package.
+#'   \code{b2ListBuckets} function in this package.
 #' @param startFileName The name of the file from which the list will start.
 #'   This is an optional parameter. Not defining this parameter will result in
 #'   the list starting from the newest file first. File names may be obtained
