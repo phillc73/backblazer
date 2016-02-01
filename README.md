@@ -1,7 +1,7 @@
 Backblazer
 =======
 
-Bindings to the [Backblaze B2 API](https://www.backblaze.com/b2/docs/). 
+An R package with bindings to the [Backblaze B2 API](https://www.backblaze.com/b2/docs/). 
 
 This package provides convenience functions for the Backblaze B2
 cloud storage API. All B2 API calls are mapped to equivalent R functions.
