@@ -25,7 +25,8 @@ devtools::install_git("https://gitlab.com/phillc73/backblazer.git")
 library("backblazer")
 ```
 
-Or the development version from GitHub if you prefer
+Or the development version from GitHub if you prefer 
+(identical to the GitLab development version)
 
 ```r
 # install.packages("devtools")
