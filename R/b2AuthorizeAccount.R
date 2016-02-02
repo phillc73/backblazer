@@ -70,7 +70,7 @@ b2AuthorizeAccount <- function(url, accountId, authorizationKey) {
     )
 
   } else {
-    # Output as dataframe. Global variable, ooooohh
+    # Output as dataframe. Save as Rds file.
     accountAuthorization <-
       as.data.frame(jsonlite::fromJSON(httr::content(b2Return, type = "text")))
     saveRDS(accountAuthorization, "accountAuthorization.rds")
