@@ -1,5 +1,6 @@
 Backblazer
 =======
+[![CRAN version](http://www.r-pkg.org/badges/version/backblazer)](http://cran.rstudio.com/web/packages/backblazer/index.html)
 
 An R package with bindings to the [Backblaze B2 API](https://www.backblaze.com/b2/docs/). 
 
