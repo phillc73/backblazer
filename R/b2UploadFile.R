@@ -41,9 +41,6 @@
 #' @export
 
 b2UploadFile <- function(authToken, uploadUrl, fileName) {
-  # Read Account Authorisation file
-  accountAuthorization <- NULL
-  accountAuthorization <- readRDS("accountAuthorization.rds")
 
   # Function options from input, make a dataframe
   # File Name

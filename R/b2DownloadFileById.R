@@ -34,9 +34,9 @@
 #' @export
 
 b2DownloadFileById <- function(fileId, overwrite = FALSE) {
-  # Read Account Authorisation file
-  accountAuthorization <- NULL
-  accountAuthorization <- readRDS("accountAuthorization.rds")
+  # Read Environment variables for authorisation details
+  downloadUrl <- Sys.getenv('downloadUrl')
+  authorizationToken <- Sys.getenv('authorizationToken')
 
   # Function options from input, make a dataframe
   fileId <- as.data.frame(fileId, stringsAsFactors = FALSE)
@@ -45,10 +45,10 @@ b2DownloadFileById <- function(fileId, overwrite = FALSE) {
   b2Return <-
     httr::POST(
       paste(
-        accountAuthorization$downloadUrl,"/b2api/v1/b2_download_file_by_id", sep =
+        downloadUrl,"/b2api/v1/b2_download_file_by_id", sep =
           ""
       ), body = jsonlite::toJSON(jsonlite::unbox(fileId), pretty = TRUE), httr::add_headers(
-        'Authorization' = as.character(accountAuthorization$authorizationToken)
+        'Authorization' = as.character(authorizationToken)
       ), httr::write_disk("tmp", overwrite = overwrite)
     )
 

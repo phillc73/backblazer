@@ -25,18 +25,19 @@
 #' @export
 
 b2ListBuckets <- function() {
-  # Read Account Authorisation file
-  accountAuthorization <- NULL
-  accountAuthorization <- readRDS("accountAuthorization.rds")
+  # Read Environment variables for authorisation details
+  apiUrl <- Sys.getenv('apiUrl')
+  accountId <- Sys.getenv('accountId')
+  authorizationToken <- Sys.getenv('authorizationToken')
 
   # API call
   b2Return <-
     httr::GET(
       paste(
-        accountAuthorization$apiUrl,"/b2api/v1/b2_list_buckets?accountId=",accountAuthorization$accountId,sep =
+        apiUrl,"/b2api/v1/b2_list_buckets?accountId=",accountId,sep =
           ""
       ), httr::add_headers(
-        'Authorization' = as.character(accountAuthorization$authorizationToken)
+        'Authorization' = as.character(authorizationToken)
       )
     )
 

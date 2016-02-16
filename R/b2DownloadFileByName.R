@@ -37,9 +37,9 @@
 
 b2DownloadFileByName <-
   function(bucketName, fileName, overwrite = FALSE) {
-    # Read Account Authorisation file
-    accountAuthorization <- NULL
-    accountAuthorization <- readRDS("accountAuthorization.rds")
+    # Read Environment variables for authorisation details
+    downloadUrl <- Sys.getenv('downloadUrl')
+    authorizationToken <- Sys.getenv('authorizationToken')
 
     # Function options from input, make a dataframe
     fileName <- as.data.frame(fileName, stringsAsFactors = FALSE)
@@ -52,10 +52,10 @@ b2DownloadFileByName <-
     b2Return <-
       httr::GET(
         url = paste(
-          accountAuthorization$downloadUrl,"/file/", bucketName, "/", fileName, sep =
+          downloadUrl,"/file/", bucketName, "/", fileName, sep =
             ""
         ), httr::add_headers(
-          'Authorization' = as.character(accountAuthorization$authorizationToken)
+          'Authorization' = as.character(authorizationToken)
         ), httr::write_disk("tmp", overwrite = overwrite)
       )
 

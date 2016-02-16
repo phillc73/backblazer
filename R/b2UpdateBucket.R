@@ -34,12 +34,13 @@
 #' @export
 
 b2UpdateBucket <- function(bucketId, bucketType) {
-  # Read Account Authorisation file
-  accountAuthorization <- NULL
-  accountAuthorization <- readRDS("accountAuthorization.rds")
+  # Read Environment variables for authorisation details
+  apiUrl <- Sys.getenv('apiUrl')
+  accountId <- Sys.getenv('accountId')
+  authorizationToken <- Sys.getenv('authorizationToken')
 
   # Function options from input, make a dataframe
-  accountId <- as.character(accountAuthorization$accountId)
+  accountId <- as.character(accountId)
   accountId <- as.data.frame(accountId, stringsAsFactors = FALSE)
   bucketId <- as.data.frame(bucketId, stringsAsFactors = FALSE)
   bucketType <- as.data.frame(bucketType, stringsAsFactors = FALSE)
@@ -51,9 +52,9 @@ b2UpdateBucket <- function(bucketId, bucketType) {
   b2Return <-
     httr::POST(
       paste(
-        accountAuthorization$apiUrl,"/b2api/v1/b2_update_bucket", sep = ""
+        apiUrl,"/b2api/v1/b2_update_bucket", sep = ""
       ), body = jsonlite::toJSON(jsonlite::unbox(vars), pretty = TRUE), httr::add_headers(
-        'Authorization' = as.character(accountAuthorization$authorizationToken)
+        'Authorization' = as.character(authorizationToken)
       )
     )
 

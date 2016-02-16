@@ -32,9 +32,7 @@ b2AuthorizeAccount(url = "https://api.backblaze.com/b2api/v1/b2_authorize_accoun
 
 Obviously substitute your actual Account ID and Authorisation Key for the placeholders.
 
-You must authorise your account first. Nothing else in this package will work until the account has been authorised. This function will ultimately save an Rds file named `accountAuthorization.Rds` in the current working directory. This file is then silently used with all other functions in the package. 
-
-**Note:** Consider programatically deleting `accountAuthorization.Rds` on exit. A new Rds file will be written each time `b2AuthorizeAccount` is executed.
+You must authorise your account first. Nothing else in this package will work until the account has been authorised. This function will ultimately save a number of environment variables containing API endpoint URLs and an authorisation token. These environment variables are then silently used with all other functions in the package. 
 
 ### Working with Buckets
 

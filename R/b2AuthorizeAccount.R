@@ -31,16 +31,13 @@
 #'   B2 account. This may be obtained by clicking \emph{Show Account ID and
 #'   Application Key} hypertext from the B2 My Account area, after logging in
 #'   with a web browser.
-#' @return If successful, an authorisation token will be returned and stored in
-#'   an Rds file called \emph{accountAuthorization.Rds} in the current working
-#'   directory. The data in this Rds file will be used in all other functions in
-#'   this package. Specific B2 documentation regarding this API call can be
+#' @return If successful, an authorisation token, API URL, download URL and your
+#'   Account ID will be returned. These are then stored in envrionment
+#'   variables. These environment variables will be used in all other functions
+#'   in this package. Specific B2 documentation regarding this API call can be
 #'   found here:
 #'
 #'   \url{https://www.backblaze.com/b2/docs/b2_authorize_account.html}
-#'
-#' @section Note: Consider programmtically deleting
-#'   \emph{accountAuthorization.Rds} on exit.
 #'
 #' @examples
 #' \dontrun{
@@ -70,9 +67,13 @@ b2AuthorizeAccount <- function(url, accountId, authorizationKey) {
     )
 
   } else {
-    # Output as dataframe. Save as Rds file.
+    # Output as dataframe.
     accountAuthorization <-
       as.data.frame(jsonlite::fromJSON(httr::content(b2Return, type = "text")))
-    saveRDS(accountAuthorization, "accountAuthorization.rds")
+    # Set environment variables to save authorisation details
+    Sys.setenv(apiUrl = accountAuthorization$apiUrl)
+    Sys.setenv(accountId = accountAuthorization$accountId)
+    Sys.setenv(authorizationToken = accountAuthorization$authorizationToken)
+    Sys.setenv(downloadUrl = accountAuthorization$downloadUrl)
   }
 }

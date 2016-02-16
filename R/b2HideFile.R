@@ -29,9 +29,9 @@
 #' @export
 
 b2HideFile <- function(bucketId, fileName) {
-  # Read Account Authorisation file
-  accountAuthorization <- NULL
-  accountAuthorization <- readRDS("accountAuthorization.rds")
+  # Read Environment variables for authorisation details
+  apiUrl <- Sys.getenv('apiUrl')
+  authorizationToken <- Sys.getenv('authorizationToken')
 
   # Function options from input, make a dataframe
   fileName <- as.data.frame(fileName, stringsAsFactors = FALSE)
@@ -44,9 +44,9 @@ b2HideFile <- function(bucketId, fileName) {
   b2Return <-
     httr::POST(
       paste(
-        accountAuthorization$apiUrl,"/b2api/v1/b2_hide_file", sep = ""
+        apiUrl,"/b2api/v1/b2_hide_file", sep = ""
       ), body = jsonlite::toJSON(jsonlite::unbox(vars), pretty = TRUE), httr::add_headers(
-        'Authorization' = as.character(accountAuthorization$authorizationToken)
+        'Authorization' = as.character(authorizationToken)
       )
     )
 

@@ -54,9 +54,9 @@
 
 b2ListFileVersions <-
   function(bucketId, startFileName = "", startFileId = "", maxFileCount = 100) {
-    # Read Account Authorisation file
-    accountAuthorization <- NULL
-    accountAuthorization <- readRDS("accountAuthorization.rds")
+    # Read Environment variables for authorisation details
+    apiUrl <- Sys.getenv('apiUrl')
+    authorizationToken <- Sys.getenv('authorizationToken')
 
     # Function options from input, make a dataframe
     bucketId <- as.data.frame(bucketId, stringsAsFactors = FALSE)
@@ -76,9 +76,9 @@ b2ListFileVersions <-
     b2Return <-
       httr::POST(
         paste(
-          accountAuthorization$apiUrl,"/b2api/v1/b2_list_file_versions", sep = ""
+          apiUrl,"/b2api/v1/b2_list_file_versions", sep = ""
         ), body = jsonlite::toJSON(jsonlite::unbox(vars), pretty = TRUE), httr::add_headers(
-          'Authorization' = as.character(accountAuthorization$authorizationToken)
+          'Authorization' = as.character(authorizationToken)
         )
       )
 

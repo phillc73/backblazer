@@ -1,6 +1,8 @@
 Backblazer
 =======
 [![CRAN version](http://www.r-pkg.org/badges/version/backblazer)](http://cran.rstudio.com/web/packages/backblazer/index.html)
+[![CRAN Downloads](http://cranlogs.r-pkg.org/badges/grand-total/backblazer)](http://cran.rstudio.com/web/packages/backblazer/index.html)
+[![Build Status](https://travis-ci.org/phillc73/backblazer.svg?branch=master)](https://travis-ci.org/phillc73/backblazer)
 
 An R package with bindings to the [Backblaze B2 API](https://www.backblaze.com/b2/docs/). 
 
@@ -80,7 +82,7 @@ Please refer directly to the [Backblaze B2 API documentation](https://www.backbl
 
 This should be largely complete and covers all Backblaze B2 API calls.
 
-Current Version: 0.1
+Current Version: 0.2
 
 ### Issues
 

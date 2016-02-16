@@ -27,9 +27,9 @@
 #' @export
 
 b2GetFileInfo <- function(fileId) {
-  # Read Account Authorisation file
-  accountAuthorization <- NULL
-  accountAuthorization <- readRDS("accountAuthorization.rds")
+  # Read Environment variables for authorisation details
+  apiUrl <- Sys.getenv('apiUrl')
+  authorizationToken <- Sys.getenv('authorizationToken')
 
   # Function options from input, make a dataframe
   fileId <- as.data.frame(fileId, stringsAsFactors = FALSE)
@@ -38,9 +38,9 @@ b2GetFileInfo <- function(fileId) {
   b2Return <-
     httr::POST(
       paste(
-        accountAuthorization$apiUrl,"/b2api/v1/b2_get_file_info", sep = ""
+        apiUrl,"/b2api/v1/b2_get_file_info", sep = ""
       ), body = jsonlite::toJSON(jsonlite::unbox(fileId), pretty = TRUE), httr::add_headers(
-        'Authorization' = as.character(accountAuthorization$authorizationToken)
+        'Authorization' = as.character(authorizationToken)
       )
     )
 

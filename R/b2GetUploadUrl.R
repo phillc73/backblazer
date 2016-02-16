@@ -29,9 +29,9 @@
 #' @export
 
 b2GetUploadUrl <- function(bucketId) {
-  # Read Account Authorisation file
-  accountAuthorization <- NULL
-  accountAuthorization <- readRDS("accountAuthorization.rds")
+  # Read Environment variables for authorisation details
+  apiUrl <- Sys.getenv('apiUrl')
+  authorizationToken <- Sys.getenv('authorizationToken')
 
   # Function options from input, make a dataframe
   bucketId <- as.data.frame(bucketId, stringsAsFactors = FALSE)
@@ -40,9 +40,9 @@ b2GetUploadUrl <- function(bucketId) {
   b2Return <-
     httr::POST(
       paste(
-        accountAuthorization$apiUrl,"/b2api/v1/b2_get_upload_url", sep = ""
+        apiUrl,"/b2api/v1/b2_get_upload_url", sep = ""
       ), body = jsonlite::toJSON(jsonlite::unbox(bucketId), pretty = TRUE), httr::add_headers(
-        'Authorization' = as.character(accountAuthorization$authorizationToken)
+        'Authorization' = as.character(authorizationToken)
       )
     )
 

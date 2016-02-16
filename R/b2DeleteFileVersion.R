@@ -32,9 +32,9 @@
 #' @export
 
 b2DeleteFileVersion <- function(fileName, fileId) {
-  # Read Account Authorisation file
-  accountAuthorization <- NULL
-  accountAuthorization <- readRDS("accountAuthorization.rds")
+  # Read Environment variables for authorisation details
+  apiUrl <- Sys.getenv('apiUrl')
+  authorizationToken <- Sys.getenv('authorizationToken')
 
   # Function options from input, make a dataframe
   fileName <- as.data.frame(fileName, stringsAsFactors = FALSE)
@@ -47,9 +47,9 @@ b2DeleteFileVersion <- function(fileName, fileId) {
   b2Return <-
     httr::POST(
       paste(
-        accountAuthorization$apiUrl,"/b2api/v1/b2_delete_file_version", sep = ""
+        apiUrl,"/b2api/v1/b2_delete_file_version", sep = ""
       ), body = jsonlite::toJSON(jsonlite::unbox(vars), pretty = TRUE), httr::add_headers(
-        'Authorization' = as.character(accountAuthorization$authorizationToken)
+        'Authorization' = as.character(authorizationToken)
       )
     )
 

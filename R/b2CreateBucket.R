@@ -34,12 +34,13 @@
 #' @export
 
 b2CreateBucket <- function(bucketName, bucketType) {
-  # Read Account Authorisation file
-  accountAuthorization <- NULL
-  accountAuthorization <- readRDS("accountAuthorization.rds")
+  # Read Environment variables for authorisation details
+  apiUrl <- Sys.getenv('apiUrl')
+  accountId <- Sys.getenv('accountId')
+  authorizationToken <- Sys.getenv('authorizationToken')
 
   # Function options from input, make a dataframe
-  accountId <- as.character(accountAuthorization$accountId)
+  accountId <- as.character(accountId)
   accountId <- as.data.frame(accountId, stringsAsFactors = FALSE)
   bucketName <- as.data.frame(bucketName, stringsAsFactors = FALSE)
   bucketType <- as.data.frame(bucketType, stringsAsFactors = FALSE)
@@ -51,9 +52,9 @@ b2CreateBucket <- function(bucketName, bucketType) {
   b2Return <-
     httr::POST(
       paste(
-        accountAuthorization$apiUrl,"/b2api/v1/b2_create_bucket", sep = ""
+        apiUrl,"/b2api/v1/b2_create_bucket", sep = ""
       ), body = jsonlite::toJSON(jsonlite::unbox(vars), pretty = TRUE), httr::add_headers(
-        'Authorization' = as.character(accountAuthorization$authorizationToken)
+        'Authorization' = as.character(authorizationToken)
       )
     )
 
