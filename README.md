@@ -88,7 +88,7 @@ Current Version: 0.2
 
 Problems? Something just doesn't work?
 
-[Submit issues here](https://github.com/phillc73/backblazer/issues).
+[Submit issues here](https://gitlab.com/phillc73/backblazer/issues).
 
 ## Links
 
