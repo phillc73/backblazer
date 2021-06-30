@@ -67,9 +67,9 @@ b2AuthorizeAccount <- function(url, accountId, authorizationKey) {
     )
 
   } else {
-    # Output as dataframe.
+    # Output as list
     accountAuthorization <-
-      as.data.frame(jsonlite::fromJSON(httr::content(b2Return, type = "text")))
+      jsonlite::fromJSON(httr::content(b2Return, type = "text"))
     # Set environment variables to save authorisation details
     Sys.setenv(apiUrl = accountAuthorization$apiUrl)
     Sys.setenv(accountId = accountAuthorization$accountId)
